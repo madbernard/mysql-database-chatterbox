@@ -1,6 +1,6 @@
 var express = require('express');
 var db = require('./db');
-
+//var request = require('./request-handler');
 // Middleware
 var morgan = require('morgan');
 var parser = require('body-parser');
@@ -30,3 +30,7 @@ if (!module.parent) {
   console.log("Listening on", app.get("port"));
 }
 
+// how does this do request handling
+//http://expressjs.com/en/starter/hello-world.html
+//http://expressjs.com/en/starter/basic-routing.html
+//https://github.com/felixge/node-mysql

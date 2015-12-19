@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- dependencies -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <!-- your scripts -->
+    <script src="env/config.js"></script>
+    <script src="scripts/app.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <h1>chatterbox</h1>
+      <h2 class="user"></h2>
+      <div id='select'>
+          <select id='rooms'></select>
+          <select id='friends'></select>
+      </div>
+      <div id='input'>
+        <input id="input-text" type="text">
+        <input id='input-room' type='text' value='lobby'>
+        <button id="submit">Submit</button>
+      </div>
+      <div id='chats'></div>
+    </div>
+    <script type="text/javascript">
+      app.init();
+    </script>
+  </body>
+</html>
