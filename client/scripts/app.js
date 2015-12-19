@@ -35,7 +35,7 @@ app.init = function(){
   }
 
   this.fetch();
-  //setInterval(app.refresh, 1000);
+  setInterval(app.refresh, 1000);
 };
 
 app.refresh = function(){

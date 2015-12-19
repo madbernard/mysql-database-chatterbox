@@ -26,7 +26,9 @@ module.exports = {
     }, // a function which handles a get request for all messages
 
     post: function(req, res) {
-
+      console.log(req.body, "this is the req.body in controllers");
+      // console.log(req.body.text, "this is the req.body.message in controllers");
+      models.messages.post(req.body);
       } // a function which handles posting a message to the database
   },
 
