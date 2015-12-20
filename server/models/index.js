@@ -8,7 +8,7 @@ module.exports = {
   messages: {
     get: function (req) {
       db.query('SELECT * from messages', function(err, rows){
-        console.log(rows);
+      //  console.log(rows);
         req(rows);
 
       });
@@ -47,11 +47,11 @@ module.exports = {
 
     post: function (req) {
       var sqlCommand = "INSERT INTO messages (message, userID, roomID) VALUES ('" + req.text + "', '3', '33');"; //variable that holds stuff from body;
-      console.log(sqlCommand, "this is the sql Command");
-      console.log(req, "this is req getting to Post is models");
+      //console.log(sqlCommand, "this is the sql Command");
+      //console.log(req, "this is req getting to Post is models");
       db.query(sqlCommand, function(err){
         if (err) {
-          console.log(err, "the err in index.js models");
+          //console.log(err, "the err in index.js models");
           throw err;
         }
         db.end();
@@ -70,7 +70,7 @@ module.exports = {
           throw err;
         }
         else {
-          console.log(rows);
+          //console.log(rows);
           req(rows);
         }
       });

@@ -1,40 +1,48 @@
 var models = require("../models");
 var bluebird = require("bluebird");
+var db = require("../db");
+// var dbServer = require("../orm-resources");
 // http://bluebirdjs.com/docs/working-with-callbacks.html
 //var rh = require("./request-handler");
 
 // maybe the request handler?
 // takes the modeled data from index.js in the modeler folder and passes it on to routes.js which passes it to the app.js server
-//
-// var headers = {
-//   'access-control-allow-origin': '*',
-//   'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
-//   'access-control-allow-headers': 'content-type, accept, X-Parse-REST-API-Key, X-Parse-Application-Id',
-//   'access-control-max-age': 10, // Seconds.
-//   'Content-Type': 'application/json'
-// };
-//
-// var sender = function(statusCode, data) {
-//   res.writeHead(statusCode, headers);
-//   res.end(JSON.stringify(data));
-// };
+var userFields = ["username"];
 
 module.exports = {
   messages: {
     get: function(req, res) {
-
+      db.Messages.findAll( { include: [ db.User ] } ).then(function(err, result){
+        res.json(result);
+      });
     }, // a function which handles a get request for all messages
 
     post: function(req, res) {
-      console.log(req.body, "this is the req.body in controllers");
-      // console.log(req.body.text, "this is the req.body.message in controllers");
-      models.messages.post(req.body);
+      db.Messages.findOrCreate( { where: [ db.User ] } ).then(function(err, result){
+        var params = {
+          text: req.body.text,
+          username: user.id,
+          roomname: req.body.roomname
+        };
+        console.log(params);
+        Message.create(params);
+        req.sendStatus(201);
+      });
       } // a function which handles posting a message to the database
   },
 
   users: {
     // Ditto as above
-    get: function(req, res) {},
-    post: function(req, res) {}
+    get: function(req, res) {
+      db.User.findAll().then(function(err, result){
+        res.json(result);
+      });
+    },
+    post: function(req, res) {
+      db.User.findOrCreate().then(function(err, result){
+        res.json(result);
+      });
+      res.json(result);
+    }
   }
 };
